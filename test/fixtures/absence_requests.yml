@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  absence_type_id: 1
+  from: 2011-05-11
+  to: 2011-05-11
+
+two:
+  absence_type_id: 1
+  from: 2011-05-11
+  to: 2011-05-11

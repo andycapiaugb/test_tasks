@@ -1,0 +1,27 @@
+<h1>Listing absence_requests</h1>
+
+<table>
+  <tr>
+    <th>Absence type</th>
+    <th>From</th>
+    <th>To</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @absence_requests.each do |absence_request| %>
+  <tr>
+    <td><%= absence_request.absence_type_id %></td>
+    <td><%= absence_request.from %></td>
+    <td><%= absence_request.to %></td>
+    <td><%= link_to 'Show', absence_request %></td>
+    <td><%= link_to 'Edit', edit_absence_request_path(absence_request) %></td>
+    <td><%= link_to 'Destroy', absence_request, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Absence request', new_absence_request_path %>

@@ -1,0 +1,7 @@
+<h1>Overzicht Taakaanvraag <%= @taskrequest.task.name %></h1>
+
+<% @taskrequest_steps.each do |step| %>
+    <div class="summary">
+      <%= render "#{step.step.name.pluralize}/summary", :taskrequest_step => step %>
+    </div>
+<% end %>

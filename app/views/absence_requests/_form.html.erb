@@ -1,0 +1,29 @@
+<%= form_for [@step, @absence_request] do |f| %>
+  <% if @absence_request.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@absence_request.errors.count, "error") %> prohibited this absence_request from being saved:</h2>
+
+      <ul>
+      <% @absence_request.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :absence_type %><br />
+    <%= f.select :absence_type, [["Jaarlijks Verlof", "Jaarlijks Verlof"], ["Compensatiefeestdagen", "Compensatiefeestdagen"]], {:include_blank => true} %>
+  </div>
+  <div class="field">
+    <%= f.label :from %><br />
+    <%= f.date_select :from %>
+  </div>
+  <div class="field">
+    <%= f.label :to %><br />
+    <%= f.date_select :to %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

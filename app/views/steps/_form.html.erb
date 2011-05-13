@@ -1,0 +1,41 @@
+<%= form_for [@task, @step] do |f| %>
+  <% if @step.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@step.errors.count, "error") %> prohibited this step from being saved:</h2>
+
+      <ul>
+      <% @step.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <div class="field">
+      <%= f.label :label %><br />
+      <%= f.text_field :label %>
+    </div>
+  <div class="field">
+    <%= f.label :internal_name %><br />
+    <%= f.text_field :name %>
+  </div>
+    <div class="field">
+      <%= f.label :executer %><br />
+      <%= f.select(:executer_id, User.all.collect {|u| [ u.login, u.id ]}, {:include_blank => true}) %>
+    </div>
+  <div class="field">
+    <%= f.label :self %><br />
+    <%= f.check_box :self %>
+  </div>
+  <div class="field">
+    <%= f.label :superior %><br />
+    <%= f.check_box :superior %>
+  </div>
+    <div class="field">
+      <%= f.label :synchronous_with_previous %><br />
+      <%= f.check_box :synchronous %>
+    </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

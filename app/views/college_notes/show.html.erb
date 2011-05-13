@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>College:</b>
+  <%= @college_note.college_id %>
+</p>
+
+<p>
+  <b>Note:</b>
+  <%= @college_note.note %>
+</p>
+
+
+<%= link_to 'Edit', edit_college_note_path(@college_note) %> |
+<%= link_to 'Back', college_notes_path %>

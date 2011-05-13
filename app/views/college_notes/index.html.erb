@@ -1,0 +1,25 @@
+<h1>Listing college_notes</h1>
+
+<table>
+  <tr>
+    <th>College</th>
+    <th>Note</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @college_notes.each do |college_note| %>
+  <tr>
+    <td><%= college_note.college_id %></td>
+    <td><%= college_note.note %></td>
+    <td><%= link_to 'Show', college_note %></td>
+    <td><%= link_to 'Edit', edit_college_note_path(college_note) %></td>
+    <td><%= link_to 'Destroy', college_note, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New College note', new_college_note_path %>

@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Iprequest:</b>
+  <%= @irregular_performance_approval.iprequest_id %>
+</p>
+
+<p>
+  <b>Verdict:</b>
+  <%= @irregular_performance_approval.verdict %>
+</p>
+
+<p>
+  <b>Motivation:</b>
+  <%= @irregular_performance_approval.motivation %>
+</p>
+
+
+<%= link_to 'Edit', edit_irregular_performance_approval_path(@irregular_performance_approval) %> |
+<%= link_to 'Back', irregular_performance_approvals_path %>

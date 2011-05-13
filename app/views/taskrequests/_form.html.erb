@@ -1,0 +1,21 @@
+<%= form_for @taskrequest do |f| %>
+  <% if @taskrequest.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@taskrequest.errors.count, "error") %> prohibited this step from being saved:</h2>
+
+      <ul>
+      <% @taskrequest.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <div class="field">
+      <%= f.label :task %><br />
+      <%= f.select(:task_id, Task.all.collect {|t| [ t.name, t.id ]}, {:include_blank => true}) %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Taak Starten" %>
+    </div>
+<% end %>

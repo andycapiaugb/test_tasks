@@ -1,0 +1,11 @@
+<% unless taskrequest_step.send(taskrequest_step.step.name.pluralize.intern).first.nil? %>
+    <div class="summary">
+      Voor het evenement: <%= taskrequest_step.send(taskrequest_step.step.name.pluralize.intern).first.event %> <br />
+      Vraagt diensthoofd <%= taskrequest_step.taskrequest.user.login %> een uitzonderlijke prestatie aan voor <%= taskrequest_step.send(taskrequest_step.step.name.pluralize.intern).first.employee %> van <%= taskrequest_step.send(taskrequest_step.step.name.pluralize.intern).first.from %> tot <%= taskrequest_step.send(taskrequest_step.step.name.pluralize.intern).first.to %><br />
+    </div>
+<% else %>
+    <div class="summary">
+      Het formulier 'Aanvraag onregelmatige prestatie' moet nog ingevuld worden door: <%= taskrequest_step.executer %>
+    </div>
+<% end %>
+<br />

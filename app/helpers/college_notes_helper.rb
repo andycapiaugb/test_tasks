@@ -1,0 +1,2 @@
+module CollegeNotesHelper
+end

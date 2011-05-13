@@ -1,0 +1,44 @@
+<h1><%= @user.login %></h1>
+
+<h3>Taak-aanvragen</h3>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Voortgang</th>
+    <th>Huidige stap</th>
+    <th>Stap-verantwoordelijke</th>
+  </tr>
+
+<% @requested_tasks.each do |taskrequest| %>
+  <tr>
+    <td><%= link_to taskrequest.task.name, taskrequest_url(taskrequest) %></td>
+    <td><%= taskrequest.get_current_step_count %> / <%= taskrequest.total_steps_count %></td>
+    <td><%= taskrequest.finished? ? "Voltooid" : taskrequest.current_step.step.label %></td>
+    <td><%= taskrequest.finished? ? "" : taskrequest.current_step_executer %></td>
+  </tr>
+<% end %>
+</table>
+
+<h3>Mijn To-do's</h3>
+<table>
+  <tr>
+    <th>Taak</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @todos.each do |request_step| %>
+  <tr>
+    <td><%= request_step.taskrequest.task.name %>: <%= request_step.step.label %></td>
+    <td><%= link_to "Go", taskrequest_process_step_url(request_step.taskrequest) %></td>
+    <td></td>
+    <td></td>
+  </tr>
+<% end %>
+</table>
+
+
+<br />
+
+<%= link_to "nieuwe taakaanvraag", new_taskrequest_url %> <%= link_to "Taken", tasks_url %>

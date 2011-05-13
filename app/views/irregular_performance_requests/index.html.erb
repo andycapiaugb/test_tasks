@@ -1,0 +1,31 @@
+<h1>Listing irregular_performance_requests</h1>
+
+<table>
+  <tr>
+    <th>Event</th>
+    <th>From</th>
+    <th>To</th>
+    <th>Employee</th>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @irregular_performance_requests.each do |irregular_performance_request| %>
+  <tr>
+    <td><%= irregular_performance_request.event %></td>
+    <td><%= irregular_performance_request.from %></td>
+    <td><%= irregular_performance_request.to %></td>
+    <td><%= irregular_performance_request.employee %></td>
+    <td><%= irregular_performance_request.description %></td>
+    <td><%= link_to 'Show', irregular_performance_request %></td>
+    <td><%= link_to 'Edit', edit_irregular_performance_request_path(irregular_performance_request) %></td>
+    <td><%= link_to 'Destroy', irregular_performance_request, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Irregular performance request', new_irregular_performance_request_path %>

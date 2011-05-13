@@ -1,0 +1,11 @@
+<% unless taskrequest_step.send(taskrequest_step.step.name.pluralize.intern).first.nil? %>
+    <div class="summary">
+      Er wordt <%= taskrequest_step.send(taskrequest_step.step.name.pluralize.intern).first.absence_type %> aangevraagd door <%= taskrequest_step.requester %> <br />
+      Voor de periode van: <%= taskrequest_step.send(taskrequest_step.step.name.pluralize.intern).first.from %> tot <%= taskrequest_step.send(taskrequest_step.step.name.pluralize.intern).first.to %><br />
+    </div>
+<% else %>
+    <div class="summary">
+      Het formulier 'Aanvraag onregelmatige prestatie' moet nog ingevuld worden door: <%= taskrequest_step.taskrequest.current_step_executer %>
+    </div>
+<% end %>
+<br />

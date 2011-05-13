@@ -1,0 +1,37 @@
+<%= form_for [@step, @irregular_performance_request] do |f| %>
+  <% if @irregular_performance_request.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@irregular_performance_request.errors.count, "error") %> prohibited this irregular_performance_request from being saved:</h2>
+
+      <ul>
+      <% @irregular_performance_request.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :event %><br />
+    <%= f.text_field :event %>
+  </div>
+  <div class="field">
+    <%= f.label :from %><br />
+    <%= f.datetime_select :from %>
+  </div>
+  <div class="field">
+    <%= f.label :to %><br />
+    <%= f.datetime_select :to %>
+  </div>
+  <div class="field">
+    <%= f.label :employee %><br />
+    <%= f.text_field :employee %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

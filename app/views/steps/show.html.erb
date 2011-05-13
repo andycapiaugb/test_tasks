@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @step.name %>
+</p>
+
+<p>
+  <b>Current:</b>
+  <%= @step.current %>
+</p>
+
+
+<%= link_to 'Edit', edit_task_step_path(@task, @step) %> |
+<%= link_to 'Back', task_steps_path(@task) %>

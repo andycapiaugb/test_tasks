@@ -1,0 +1,9 @@
+<h1>Beslissing betreffende onregelmatige prestatie</h1>
+
+<% @previous_steps.each do |step| %>
+    <div class="summary">
+      <%= render "#{step.step.name.pluralize}/summary", :taskrequest_step => step %>
+    </div>
+<% end %>
+
+<%= render 'form' %>

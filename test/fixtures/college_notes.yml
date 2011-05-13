@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  college_id: 1
+  note: MyText
+
+two:
+  college_id: 1
+  note: MyText

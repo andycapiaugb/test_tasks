@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Osn:</b>
+  <%= @new_employee_request.osn %>
+</p>
+
+<p>
+  <b>Motivation:</b>
+  <%= @new_employee_request.motivation %>
+</p>
+
+
+<%= link_to 'Edit', edit_new_employee_request_path(@new_employee_request) %> |
+<%= link_to 'Back', new_employee_requests_path %>

@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  event: MyString
+  from: 2011-05-05 12:35:25
+  to: 2011-05-05 12:35:25
+  employee: MyString
+  description: MyString
+
+two:
+  event: MyString
+  from: 2011-05-05 12:35:25
+  to: 2011-05-05 12:35:25
+  employee: MyString
+  description: MyString

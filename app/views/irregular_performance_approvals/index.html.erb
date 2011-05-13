@@ -1,0 +1,27 @@
+<h1>Listing irregular_performance_approvals</h1>
+
+<table>
+  <tr>
+    <th>Iprequest</th>
+    <th>Verdict</th>
+    <th>Motivation</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @irregular_performance_approvals.each do |irregular_performance_approval| %>
+  <tr>
+    <td><%= irregular_performance_approval.iprequest_id %></td>
+    <td><%= irregular_performance_approval.verdict %></td>
+    <td><%= irregular_performance_approval.motivation %></td>
+    <td><%= link_to 'Show', irregular_performance_approval %></td>
+    <td><%= link_to 'Edit', edit_irregular_performance_approval_path(irregular_performance_approval) %></td>
+    <td><%= link_to 'Destroy', irregular_performance_approval, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Irregular performance approval', new_irregular_performance_approval_path %>
