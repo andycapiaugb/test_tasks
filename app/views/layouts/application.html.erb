@@ -13,7 +13,7 @@
     Aangemeld als <%= link_to current_user.login, user_url(current_user) %>
       <%= link_to "Afmelden", log_out_url %>
   <% else %>
-    <%= link_to "Aanmelden", log_in_url %>
+    <%= link_to "Aanmelden", log_in_url %> | <%= link_to "Create User", sign_up_url %>
   <% end %>
 </div>
 
