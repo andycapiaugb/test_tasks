@@ -6,6 +6,12 @@ gem 'rails', '3.0.5'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
+gem 'prawn'
+gem 'ttfunk'
+gem 'pdf-reader'
+gem 'Ascii85'
+#gem 'prawn', :git => "git://github.com/sandal/prawn.git", :tag => '0.10.2', :submodules => true
+gem 'prawn_rails'
 
 # Use unicorn as the web server
 # gem 'unicorn'
