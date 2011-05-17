@@ -3,16 +3,6 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  def create
-    @user = User.new(params[:user])
-
-    if @user.save
-      redirect_to tasks_url, :notice => "User added :)"
-    else
-      render "new"
-    end
-  end
-
   def index
     @users = User.all
   end

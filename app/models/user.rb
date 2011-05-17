@@ -1,31 +1,27 @@
 class User < ActiveRecord::Base
+  set_table_name 'jos_users'
+
   has_many :steps
   has_many :taskrequests
   has_many :tasks, :through => :taskrequests
   
-  attr_accessible :login, :password, :password_confirmation
-  
-  attr_accessor :password
-  before_save :encrypt_password
+  self.abstract_class = true
+  establish_connection  :adapter => "mysql2", :host => "mysql03.combell.com", :database => "19997_geraardsbergenbe", :username => "19997_geraardsbergenbe", :password => "Hri89Ae0"
 
-  validates_confirmation_of :password
-  validates_uniqueness_of :login
-  #validates: should not start with a number => usernames will be converted to an integer to see if an executer is a specific person or a label, like "_self". The .to_i method will result in zero for a string that starts with a character; however it will return an integer if the username starts with an integer
+  def login
+    self.username
+  end  
 
   def self.authenticate(login, password)
-    user = self.find_by_login(login)
+    user = self.find_by_username(login)
+    user_password = user.password[0..31]
+    user_salt = user.password[33..-1]
 
-    if user && user.password_hash == Digest::SHA1.hexdigest(password + 'My password can not be guessed' + user.password_salt)
+    if user && user_password == Digest::MD5.hexdigest(password + user_salt)
       user
     else
       nil
     end
   end
 
-  def encrypt_password
-    if password.present?
-      self.password_salt = Digest::SHA1.hexdigest('My salt can not be guessed' + Time.now.to_s)
-      self.password_hash = Digest::SHA1.hexdigest(password + 'My password can not be guessed' + password_salt)
-    end
-  end
 end

@@ -19,6 +19,13 @@
     </requirement>
     <requirement>
       <requirement>
+        <dependency name="mysql2" version="0.2.6" bound="EQUAL" git="false" path="false" doRequire="true" />
+      </requirement>
+      <source manual="true" />
+      <source from="Gemfile" />
+    </requirement>
+    <requirement>
+      <requirement>
         <dependency name="pdf-reader" version="0" bound="GREATER_OR_EQUAL" git="false" path="false" doRequire="true" />
       </requirement>
       <source manual="true" />
@@ -104,6 +111,7 @@
     <orderEntry type="library" scope="PROVIDED" name="[gem] prawn (v0.11.1, C:/Ruby/lib/ruby/gems/1.9.1/gems/prawn-0.11.1)" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="[gem] prawn_rails (v0.0.4, C:/Ruby/lib/ruby/gems/1.9.1/gems/prawn_rails-0.0.4)" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="[gem] ttfunk (v1.0.1, C:/Ruby/lib/ruby/gems/1.9.1/gems/ttfunk-1.0.1)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] mysql2 (v0.2.6, C:/Ruby/lib/ruby/gems/1.9.1/gems/mysql2-0.2.6-x86-mingw32)" level="application" />
   </component>
 </module>
 
