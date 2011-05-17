@@ -19,7 +19,7 @@ class Taskrequest < ActiveRecord::Base
 
     #now get the step, if any at all, that's devoted to this user
     if not self.finished?
-      self.taskrequests_steps.joins(:step, :taskrequest).order("id DESC").where("current = ? AND ((steps.self = ? AND taskrequests.user_id == ?) OR executer_id == ?)", true, true, current_user.id, current_user.id).limit(1).first
+      self.taskrequests_steps.joins(:step, :taskrequest).order("id DESC").where("current = ? AND ((steps.self = ? AND taskrequests.user_id = ?) OR executer_id = ?)", true, true, current_user.id, current_user.id).limit(1).first
     else
       return nil
     end
