@@ -4,6 +4,7 @@ class CreateTaskrequestsSteps < ActiveRecord::Migration
       t.references :taskrequest
       t.references :step
       t.boolean :current
+      t.integer :executer_id
       t.datetime :completed_at
 
       t.timestamps

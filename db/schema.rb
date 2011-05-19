@@ -36,7 +36,6 @@ ActiveRecord::Schema.define(:version => 20110511070756) do
 
   create_table "irregular_performance_approvals", :force => true do |t|
     t.integer  "taskrequests_step_id"
-    t.integer  "irregular_performance_request_id"
     t.boolean  "verdict"
     t.text     "motivation"
     t.datetime "created_at"
@@ -55,6 +54,7 @@ ActiveRecord::Schema.define(:version => 20110511070756) do
   end
 
   create_table "new_employee_requests", :force => true do |t|
+    t.integer  "taskrequests_step_id"
     t.string   "osn"
     t.text     "motivation"
     t.datetime "created_at"
@@ -100,6 +100,7 @@ ActiveRecord::Schema.define(:version => 20110511070756) do
     t.integer  "taskrequest_id"
     t.integer  "step_id"
     t.boolean  "current"
+    t.integer  "executer_id"
     t.datetime "completed_at"
     t.datetime "created_at"
     t.datetime "updated_at"

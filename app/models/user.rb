@@ -4,7 +4,8 @@ class User < ActiveRecord::Base
   has_many :steps
   has_many :taskrequests
   has_many :tasks, :through => :taskrequests
-  
+  has_many :taskrequests_steps
+
   self.abstract_class = true
   establish_connection  :adapter => "mysql2", :host => "mysql03.combell.com", :database => "19997_geraardsbergenbe", :username => "19997_geraardsbergenbe", :password => "Hri89Ae0"
 
@@ -24,15 +25,24 @@ class User < ActiveRecord::Base
   end
 
   def superior
-    osn_codes_sql_string = self.osn_codes.to_s.gsub("[", "(").gsub("]", ")")
-    sql = ActiveRecord::Base.sanitize("SELECT `superior` FROM `jos_gborg_superiors` WHERE `jos_gborg_superiors`.`osn` IN #{osn_codes_sql_string}").gsub("'", "")
-    superior_persnr = self.connection.execute(sql).first
+    #todo: for each osn_codes.reverse: select the superior, but only the one where the persnr is different than the persnr of this user-object
+
+    osn_codes_sql_string = self.osn_codes.join(", ")
+    superior_persnr = self.connection.execute("SELECT `superior` FROM `jos_gborg_superiors` WHERE `jos_gborg_superiors`.`osn` IN (#{osn_codes_sql_string}) ORDER BY `osn` DESC").first
     if superior_persnr
       superior_persnr = superior_persnr[0]
-        User.find_by_persnr(self.connection.select_value(sql))
+      User.find_by_persnr(superior_persnr)
     else
       self.top_superior
     end
+  end
+
+  def is_superior?
+    self.connection.select_value("SELECT osn FROM `jos_gborg_superiors` WHERE `jos_gborg_superiors`.`persnr` = #{self.persnr}")
+  end
+
+  def is_superior_of_osn?(osn_code)
+
   end
 
   def self.authenticate(login, password)

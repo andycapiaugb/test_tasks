@@ -1,6 +1,6 @@
 <% unless taskrequest_step.send(taskrequest_step.step.name.pluralize.intern).first.nil? %>
     <div class="summary">
-      Er wordt <%= taskrequest_step.send(taskrequest_step.step.name.pluralize.intern).first.absence_type %> aangevraagd door <%= taskrequest_step.requester %> <br />
+      Er wordt <%= taskrequest_step.send(taskrequest_step.step.name.pluralize.intern).first.absence_type %> aangevraagd door <%= taskrequest_step.requester_name %> <br />
       Voor de periode van: <%= taskrequest_step.send(taskrequest_step.step.name.pluralize.intern).first.from %> tot <%= taskrequest_step.send(taskrequest_step.step.name.pluralize.intern).first.to %><br />
     </div>
 <% else %>

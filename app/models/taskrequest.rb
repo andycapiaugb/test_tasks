@@ -15,11 +15,11 @@ class Taskrequest < ActiveRecord::Base
   def get_current(current_user)
     self.ensure_current #if there was no need to place the first step as current, so if this process was already processed
 
-    TaskrequestsStep.set_next_step_as_current(self.current_step.id) if ((self.current_step_has_saved_results?) && ((self.current_step.has_next_step? || self.finished?))) #if nothing is saved, then skip this; if something is saved in current step, then this step is finished and it should proceed to the next
+    TaskrequestsStep.set_next_step_as_current(self.current_step.id, current_user) if ((self.current_step_has_saved_results?) && ((self.current_step.has_next_step? || self.finished?))) #if nothing is saved, then skip this; if something is saved in current step, then this step is finished and it should proceed to the next
 
     #now get the step, if any at all, that's devoted to this user
     if not self.finished?
-      self.taskrequests_steps.joins(:step, :taskrequest).order("id DESC").where("current = ? AND ((steps.self = ? AND taskrequests.user_id = ?) OR executer_id = ?)", true, true, current_user.id, current_user.id).limit(1).first
+      self.taskrequests_steps.todos(current_user.id).limit(1).first
     else
       return nil
     end
@@ -29,6 +29,9 @@ class Taskrequest < ActiveRecord::Base
     if self.taskrequests_steps.where("current = ?", true).count == 0 #If no current steps
       step = self.taskrequests_steps.first #then take the first step in the request
       step.current = true #and set this as current step
+      if step.step.superior?
+        step.executer = current_user.superior
+      end
       step.save #save it
     else
       return false
@@ -73,10 +76,14 @@ class Taskrequest < ActiveRecord::Base
   end
 
   def current_step_executer
-    if not self.current_step.step.executer
-      self.user.login if self.current_step.step.self
+    if not self.current_step.executer
+      if not self.current_step.step.executer
+        self.user.login if self.current_step.step.self
+      else
+          self.current_step.step.executer.login
+      end
     else
-        self.current_step.step.executer.login
+      self.current_step.executer.login
     end
   end
 

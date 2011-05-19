@@ -1,11 +1,11 @@
 <% unless taskrequest_step.send(taskrequest_step.step.name.pluralize.intern).first.nil? %>
     <div class="summary">
-      Deze beslissing werd <%= taskrequest_step.send(taskrequest_step.step.name.pluralize.intern).first.verdict ? "goedgekeurd" : "afgekeurd" %> door: <%= taskrequest_step.executer %> <br />
+      Deze beslissing werd <%= taskrequest_step.send(taskrequest_step.step.name.pluralize.intern).first.verdict ? "goedgekeurd" : "afgekeurd" %> door: <%= taskrequest_step.executer_name %> <br />
       Motivatie: <%= taskrequest_step.send(taskrequest_step.step.name.pluralize.intern).first.motivation %><br />
     </div>
 <% else %>
     <div class="summary">
-      Deze aanvraag heeft nog de beoordeling nodig van: <%= taskrequest_step.executer %>
+      Deze aanvraag heeft nog de beoordeling nodig van: <%= taskrequest_step.executer_name %>
     </div>
 <% end %>
 <br />
