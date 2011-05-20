@@ -25,24 +25,15 @@ class User < ActiveRecord::Base
   end
 
   def superior
-    #todo: for each osn_codes.reverse: select the superior, but only the one where the persnr is different than the persnr of this user-object
-
-    osn_codes_sql_string = self.osn_codes.join(", ")
-    superior_persnr = self.connection.execute("SELECT `superior` FROM `jos_gborg_superiors` WHERE `jos_gborg_superiors`.`osn` IN (#{osn_codes_sql_string}) ORDER BY `osn` DESC").first
+    superior_persnr = self.osn_codes.reverse.each do |osn_code|
+      found_persnr = self.connection.select_value("SELECT `superior` FROM `jos_gborg_superiors` WHERE `jos_gborg_superiors`.`osn` = #{osn_code} ORDER BY `osn` DESC")
+      break found_persnr if found_persnr != self.persnr
+    end
     if superior_persnr
-      superior_persnr = superior_persnr[0]
       User.find_by_persnr(superior_persnr)
     else
       self.top_superior
     end
-  end
-
-  def is_superior?
-    self.connection.select_value("SELECT osn FROM `jos_gborg_superiors` WHERE `jos_gborg_superiors`.`persnr` = #{self.persnr}")
-  end
-
-  def is_superior_of_osn?(osn_code)
-
   end
 
   def self.authenticate(login, password)
